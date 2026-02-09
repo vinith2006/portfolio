@@ -1,83 +1,30 @@
 
 import React, { useState } from 'react';
 import { PROJECTS, SOCIAL_LINKS } from '../constants.ts';
-import { ExternalLink, Github, Loader2, Sparkles, RefreshCcw } from 'lucide-react';
-import { GoogleGenAI } from "@google/genai";
+import { ExternalLink, Github } from 'lucide-react';
 
 const ProjectCard: React.FC<{ project: typeof PROJECTS[0] }> = ({ project }) => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isGenerating, setIsGenerating] = useState(false);
-  const [aiImage, setAiImage] = useState<string | null>(null);
-
-  const generateAIImage = async () => {
-    setIsGenerating(true);
-    try {
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-      const prompt = `A futuristic, high-tech cinematic digital art representing ${project.title}. 
-      Visual concept: ${project.description}. 
-      Style: Cyberpunk, Neon, Sleek, Cosmic, 4k resolution, professional portfolio quality.`;
-
-      const response = await ai.models.generateContent({
-        model: 'gemini-2.5-flash-image',
-        contents: {
-          parts: [{ text: prompt }],
-        },
-        config: {
-          imageConfig: {
-            aspectRatio: "16:9"
-          }
-        }
-      });
-
-      for (const part of response.candidates[0].content.parts) {
-        if (part.inlineData) {
-          const base64Data = part.inlineData.data;
-          setAiImage(`data:image/png;base64,${base64Data}`);
-          setIsLoaded(false); // Reset loader for new image
-          break;
-        }
-      }
-    } catch (error) {
-      console.error("Image generation failed:", error);
-      alert("Failed to reach the cosmic creative engine. Please try again.");
-    } finally {
-      setIsGenerating(false);
-    }
-  };
 
   return (
     <div 
       className="group relative rounded-3xl bg-[#0a0a0f] border border-white/10 overflow-hidden hover:border-[#ec4899] transition-all duration-500 flex flex-col"
     >
       <div className="relative h-48 overflow-hidden bg-white/5">
-        {(!isLoaded || isGenerating) && (
-          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-black/60 backdrop-blur-sm">
-            <Loader2 className="w-8 h-8 text-[#00f3ff] animate-spin mb-2" />
-            {isGenerating && <span className="text-[10px] font-mono text-[#00f3ff] animate-pulse">GENERATING AI VISUAL...</span>}
-          </div>
-        )}
         <img 
-          src={aiImage || project.image} 
+          src={project.image} 
           alt={project.title}
           loading="lazy"
           decoding="async"
           onLoad={() => setIsLoaded(true)}
           className={`w-full h-full object-cover transition-all duration-1000 ${
-            isLoaded && !isGenerating ? 'opacity-100 scale-100' : 'opacity-0 scale-110'
+            isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-110'
           } grayscale group-hover:grayscale-0 group-hover:scale-110`}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] to-transparent opacity-60" />
         
         {/* Action Buttons */}
         <div className="absolute top-4 right-4 flex gap-2 z-20">
-          <button 
-            onClick={generateAIImage}
-            disabled={isGenerating}
-            title="Generate AI Image"
-            className="p-2 rounded-xl bg-black/60 border border-white/10 backdrop-blur-md hover:bg-[#00f3ff] transition-all text-white group/ai"
-          >
-            {aiImage ? <RefreshCcw size={18} className={isGenerating ? "animate-spin" : ""} /> : <Sparkles size={18} className="group-hover/ai:animate-pulse" />}
-          </button>
           <a 
             href={project.link} 
             target="_blank" 
@@ -98,14 +45,6 @@ const ProjectCard: React.FC<{ project: typeof PROJECTS[0] }> = ({ project }) => 
       </div>
 
       <div className="p-8 flex-1 flex flex-col relative">
-        <div className="absolute top-0 right-8 -translate-y-1/2">
-           {aiImage && (
-             <div className="px-3 py-1 bg-[#00f3ff]/20 border border-[#00f3ff]/30 rounded-full text-[10px] font-mono text-[#00f3ff] backdrop-blur-sm flex items-center gap-1">
-               <Sparkles size={10} /> AI GENERATED
-             </div>
-           )}
-        </div>
-
         <h3 className="text-xl font-bold mb-3 text-white group-hover:text-[#ec4899] transition-colors">
           {project.title}
         </h3>
@@ -141,10 +80,6 @@ const Projects: React.FC = () => {
             <p className="text-white/50 font-mono text-sm leading-relaxed mb-4">
               A selection of experimental deployments and production-ready architectures.
             </p>
-            <div className="flex items-center gap-2 text-[10px] font-mono text-[#00f3ff] animate-pulse">
-              <Sparkles size={12} />
-              NEW: GENERATE UNIQUE AI VISUALS FOR EACH PROJECT
-            </div>
           </div>
         </div>
 
