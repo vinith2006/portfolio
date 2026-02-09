@@ -11,7 +11,6 @@ import Projects from './components/Projects.tsx';
 import Achievements from './components/Achievements.tsx';
 import Experience from './components/Experience.tsx';
 import Contact from './components/Contact.tsx';
-import Chatbot from './components/Chatbot.tsx';
 import { SOCIAL_LINKS } from './constants.ts';
 
 const App: React.FC = () => {
@@ -42,8 +41,6 @@ const App: React.FC = () => {
         <Experience />
         <Contact />
       </main>
-
-      <Chatbot />
 
       <footer className="py-12 border-t border-white/5 text-center bg-black/40 backdrop-blur-sm relative z-10">
         <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
