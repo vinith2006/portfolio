@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle2, Loader2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle2, Loader2, Download } from 'lucide-react';
 
 const Contact: React.FC = () => {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success'>('idle');
@@ -56,6 +56,17 @@ const Contact: React.FC = () => {
                   </div>
                 </a>
               ))}
+            </div>
+
+            <div className="mt-12">
+              <a 
+                href="/resume.pdf" 
+                download="Vinith_M_Resume.pdf"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#6366f1] to-[#ec4899] rounded-2xl font-bold text-white hover:shadow-lg hover:shadow-[#6366f1]/50 transition-all duration-300 transform hover:scale-105"
+              >
+                <Download size={20} />
+                DOWNLOAD RESUME
+              </a>
             </div>
           </div>
 
