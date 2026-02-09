@@ -46,14 +46,6 @@ const Navbar: React.FC = () => {
                 <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#6366f1] transition-all duration-300 group-hover:w-full" />
               </button>
             ))}
-            <a 
-              href={SOCIAL_LINKS.resume} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="bg-[#6366f1] hover:bg-[#8b5cf6] text-white px-5 py-2 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(99,102,241,0.4)] active:scale-95 text-center"
-            >
-              Resume
-            </a>
           </div>
 
           <button className="md:hidden text-white p-2" onClick={() => setIsOpen(!isOpen)}>
@@ -74,14 +66,6 @@ const Navbar: React.FC = () => {
                 {item}
               </button>
             ))}
-            <a 
-              href={SOCIAL_LINKS.resume} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="w-full bg-[#6366f1] text-white py-3 rounded-xl font-bold text-center"
-            >
-              Download Resume
-            </a>
           </div>
         </div>
       </div>
