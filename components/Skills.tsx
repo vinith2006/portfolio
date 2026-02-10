@@ -4,18 +4,18 @@ import { SKILLS } from '../constants';
 
 const Skills: React.FC = () => {
   return (
-    <section id="skills" className="py-24 px-6 bg-[#0a0a0f]/50">
+    <section id="skills" className="py-24 px-6 relative bg-gradient-to-b from-[#0ea5e9]/5 via-transparent to-[#0ea5e9]/5 perspective-container">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-black mb-4 tracking-tight">CORE ARSENAL</h2>
+        <div className="text-center mb-20 fade-in-on-scroll">
+          <h2 className="text-4xl md:text-5xl font-black mb-4 tracking-tight title-enhanced title-ocean text-3d">⚡ CORE ARSENAL</h2>
           <p className="text-white/40 font-mono text-sm uppercase tracking-widest">Technological Proficiencies</p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 perspective-container">
           {SKILLS.map((skill, idx) => (
             <div 
               key={skill.name}
-              className="group relative p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-[#6366f1] transition-all duration-700 hover:-translate-y-2 overflow-hidden"
+              className="group relative card-enhanced card-ocean lift-on-hover card-3d flip-on-hover shadow-3d stagger-" style={{ animationDelay: `${idx * 100}ms` }}
             >
               <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00f3ff] to-transparent opacity-0 group-hover:opacity-100 scan-line" />
               

@@ -3,12 +3,15 @@ import React, { useState } from 'react';
 import { PROJECTS, SOCIAL_LINKS } from '../constants.ts';
 import { ExternalLink, Github } from 'lucide-react';
 
-const ProjectCard: React.FC<{ project: typeof PROJECTS[0] }> = ({ project }) => {
+const ProjectCard: React.FC<{ project: typeof PROJECTS[0]; index: number }> = ({ project, index }) => {
   const [isLoaded, setIsLoaded] = useState(false);
+  
+  const colorSchemes = ['card-neon', 'card-ocean', 'card-fire', 'card-aurora'];
+  const colorScheme = colorSchemes[index % colorSchemes.length];
 
   return (
     <div 
-      className="group relative rounded-3xl bg-[#0a0a0f] border border-white/10 overflow-hidden hover:border-[#ec4899] transition-all duration-500 flex flex-col"
+      className={`group relative card-enhanced ${colorScheme} lift-on-hover card-3d shadow-3d perspective-container`}
     >
       <div className="relative h-48 overflow-hidden bg-white/5">
         <img 
@@ -29,7 +32,7 @@ const ProjectCard: React.FC<{ project: typeof PROJECTS[0] }> = ({ project }) => 
             href={project.link} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="p-2 rounded-xl bg-black/60 border border-white/10 backdrop-blur-md hover:bg-[#6366f1] transition-colors text-white"
+            className="p-2 rounded-xl glass-effect backdrop-blur-md hover:bg-[#6366f1] transition-all text-white group-hover:scale-110 smooth-transition"
           >
             <Github size={18} />
           </a>
@@ -37,7 +40,7 @@ const ProjectCard: React.FC<{ project: typeof PROJECTS[0] }> = ({ project }) => 
             href={project.link} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="p-2 rounded-xl bg-black/60 border border-white/10 backdrop-blur-md hover:bg-[#ec4899] transition-colors text-white"
+            className="p-2 rounded-xl glass-effect backdrop-blur-md hover:bg-[#22d3ee] transition-all text-white group-hover:scale-110 smooth-transition"
           >
             <ExternalLink size={18} />
           </a>
@@ -45,7 +48,7 @@ const ProjectCard: React.FC<{ project: typeof PROJECTS[0] }> = ({ project }) => 
       </div>
 
       <div className="p-8 flex-1 flex flex-col relative">
-        <h3 className="text-xl font-bold mb-3 text-white group-hover:text-[#ec4899] transition-colors">
+        <h3 className="text-xl font-bold mb-3 text-white group-hover:text-[#22d3ee] smooth-transition">
           {project.title}
         </h3>
         <p className="text-white/60 text-sm mb-6 line-clamp-2">
@@ -54,27 +57,30 @@ const ProjectCard: React.FC<{ project: typeof PROJECTS[0] }> = ({ project }) => 
         
         <div className="flex flex-wrap gap-2 mt-auto">
           {project.tags.map(tag => (
-            <span key={tag} className="px-3 py-1 text-[10px] font-mono border border-white/10 rounded-full text-white/40 uppercase tracking-widest">
+            <span key={tag} className="px-3 py-1 text-[10px] font-mono border border-white/20 rounded-full text-white/60 uppercase tracking-widest hover:border-[#6366f1] hover:text-[#6366f1] smooth-transition bg-white/5">
               {tag}
             </span>
           ))}
         </div>
       </div>
 
-      {/* Hologram Overlay Effect */}
-      <div className="absolute inset-0 pointer-events-none border-2 border-[#ec4899] opacity-0 group-hover:opacity-10 scale-95 group-hover:scale-100 transition-all duration-500 rounded-3xl" />
+      {/* Enhanced Hologram Overlay Effect */}
+      <div className="absolute inset-0 pointer-events-none rounded-3xl" style={{
+        background: 'radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(99, 102, 241, 0.1) 0%, transparent 80%)',
+        opacity: 0,
+      }} className="group-hover:opacity-100 group-hover:scale-100 transition-all duration-500" />
     </div>
   );
 };
 
 const Projects: React.FC = () => {
   return (
-    <section id="projects" className="py-24 px-6">
+    <section id="projects" className="py-24 px-6 relative bg-gradient-to-b from-transparent via-[#0ea5e9]/3 to-transparent">
       <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8 fade-in-on-scroll">
           <div>
-            <h2 className="text-4xl md:text-5xl font-black mb-4 tracking-tight uppercase">Cyber Vault</h2>
-            <div className="w-32 h-1 bg-[#ec4899] rounded-full" />
+            <h2 className="text-4xl md:text-5xl font-black mb-4 tracking-tight uppercase title-enhanced title-neon text-3d-deep">🛡️ Cyber Vault</h2>
+            <div className="underline-gradient" />
           </div>
           <div className="max-w-md">
             <p className="text-white/50 font-mono text-sm leading-relaxed mb-4">
@@ -84,8 +90,8 @@ const Projects: React.FC = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {PROJECTS.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+          {PROJECTS.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>
 
@@ -94,7 +100,7 @@ const Projects: React.FC = () => {
             href={SOCIAL_LINKS.github} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="inline-block px-10 py-4 border-2 border-white/10 rounded-2xl font-mono text-sm hover:border-[#6366f1] hover:text-[#6366f1] transition-all"
+            className="inline-block px-10 py-4 btn-neon rounded-2xl font-mono text-sm hover:scale-105 smooth-transition shadow-3d text-3d"
           >
             VIEW ALL REPOSITORIES →
           </a>

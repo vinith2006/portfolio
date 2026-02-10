@@ -4,7 +4,7 @@ import { Project, Skill, Experience, Certification, Achievement } from './types.
 export const COLORS = {
   primary: '#6366f1',
   secondary: '#8b5cf6',
-  accent: '#ec4899',
+  accent: '#22d3ee',
   neon: '#00f3ff',
   dark: '#0a0a0f',
   darker: '#050507',

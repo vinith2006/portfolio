@@ -29,16 +29,33 @@ const CustomCursor: React.FC = () => {
 
   return (
     <>
-      {/* Main Cursor Dot */}
+      {/* Main Cursor Dot with Glow */}
       <div 
-        className="fixed top-0 left-0 w-3 h-3 bg-[#00f3ff] rounded-full pointer-events-none z-[9999] transition-transform duration-100 ease-out"
-        style={{ transform: `translate(${position.x - 6}px, ${position.y - 6}px) scale(${isPointer ? 2 : 1})`, mixBlendMode: 'difference' }}
+        className="fixed top-0 left-0 w-3 h-3 bg-[#00f3ff] rounded-full pointer-events-none z-[9999] smooth-transition shadow-[0_0_15px_#00f3ff]"
+        style={{ transform: `translate(${position.x - 6}px, ${position.y - 6}px) scale(${isPointer ? 1.5 : 1})`, mixBlendMode: 'difference' }}
       />
-      {/* Follower Ring */}
+      
+      {/* Outer Glow Ring */}
       <div 
-        ref={followerRef}
-        className="fixed top-0 left-0 w-8 h-8 border border-[#6366f1] rounded-full pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 transition-all duration-300"
-        style={{ width: isPointer ? '60px' : '32px', height: isPointer ? '60px' : '32px' }}
+        className="fixed top-0 left-0 pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 smooth-transition rounded-full border border-[#00f3ff]/40"
+        style={{ 
+          left: `${position.x}px`,
+          top: `${position.y}px`,
+          width: isPointer ? '80px' : '40px', 
+          height: isPointer ? '80px' : '40px',
+          boxShadow: isPointer ? '0 0 30px rgba(0, 243, 255, 0.5)' : '0 0 15px rgba(99, 102, 241, 0.3)'
+        }}
+      />
+      
+      {/* Secondary Ring */}
+      <div 
+        className="fixed top-0 left-0 pointer-events-none z-[9997] -translate-x-1/2 -translate-y-1/2 smooth-transition rounded-full border border-[#6366f1]/20"
+        style={{ 
+          left: `${position.x}px`,
+          top: `${position.y}px`,
+          width: isPointer ? '120px' : '60px', 
+          height: isPointer ? '120px' : '60px',
+        }}
       />
     </>
   );

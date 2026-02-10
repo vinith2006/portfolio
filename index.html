@@ -7,39 +7,85 @@
     <title>Vinith M | Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
     <style>
       body {
         font-family: 'Inter', sans-serif;
-        background-color: #050507;
+        background: linear-gradient(135deg, #050507 0%, #0a0a0f 50%, #050507 100%);
+        background-attachment: fixed;
         color: #f8fafc;
         overflow-x: hidden;
+        position: relative;
       }
+      
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.05) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 80%, rgba(34, 211, 238, 0.06) 0%, transparent 50%);
+        pointer-events: none;
+        z-index: 1;
+      }
+      
       .font-mono {
         font-family: 'Fira+Code', monospace;
       }
+      
       ::selection {
-        background: #6366f1;
+        background: linear-gradient(135deg, #6366f1 0%, #22d3ee 100%);
         color: white;
       }
+      
+      ::-moz-selection {
+        background: linear-gradient(135deg, #6366f1 0%, #22d3ee 100%);
+        color: white;
+      }
+      
       ::-webkit-scrollbar {
-        width: 8px;
+        width: 12px;
       }
+      
       ::-webkit-scrollbar-track {
-        background: #0a0a0f;
+        background: linear-gradient(to bottom, #0a0a0f, #1a1a2e);
       }
+      
       ::-webkit-scrollbar-thumb {
-        background: #6366f1;
-        border-radius: 4px;
+        background: linear-gradient(to bottom, #6366f1, #22d3ee);
+        border-radius: 6px;
+        border: 3px solid #050507;
       }
+      
       ::-webkit-scrollbar-thumb:hover {
-        background: #8b5cf6;
+        background: linear-gradient(to bottom, #8b5cf6, #22d3ee);
+        box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
       }
+      
       @keyframes scan {
         0% { transform: translateY(-100%); }
         100% { transform: translateY(100%); }
       }
+      
       .scan-line {
         animation: scan 3s linear infinite;
+      }
+      
+      /* Smooth page load animation */
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      /* Enhanced animations */
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      
+      body {
+        animation: fadeIn 0.5s ease-out;
       }
     </style>
   <script type="importmap">

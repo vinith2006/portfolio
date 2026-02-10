@@ -26,13 +26,13 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen selection:bg-[#6366f1] selection:text-white">
+    <div className="relative min-h-screen selection:bg-gradient-to-r selection:from-[#6366f1] selection:to-[#22d3ee] selection:text-white">
       <Loader />
       <CustomCursor />
       <BackgroundEffects />
       <Navbar />
 
-      <main className={`transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+      <main className={`smooth-transition ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
         <Hero />
         <About />
         <Skills />
@@ -42,15 +42,15 @@ const App: React.FC = () => {
         <Contact />
       </main>
 
-      <footer className="py-12 border-t border-white/5 text-center bg-black/40 backdrop-blur-sm relative z-10">
+      <footer className="py-12 border-t border-white/10 text-center glass-effect neon-glow relative z-10 smooth-transition-lg">
         <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="text-sm font-mono text-white/30 uppercase tracking-widest">
+          <div className="text-sm font-mono text-white/30 hover:text-white/60 smooth-transition uppercase tracking-widest">
             © {new Date().getFullYear()} VINITH M // CSE STUDENT // TAMIL NADU
           </div>
           <div className="flex flex-wrap justify-center gap-8">
             <button 
               onClick={scrollToTop}
-              className="text-sm font-mono text-white/40 hover:text-[#00f3ff] transition-colors uppercase"
+              className="text-sm font-mono text-white/40 hover:text-[#00f3ff] smooth-transition uppercase accent-line"
             >
               Back to Top
             </button>
@@ -58,14 +58,14 @@ const App: React.FC = () => {
               href={SOCIAL_LINKS.github} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-sm font-mono text-white/40 hover:text-[#00f3ff] transition-colors uppercase"
+              className="text-sm font-mono text-white/40 hover:text-[#00f3ff] smooth-transition uppercase accent-line"
             >
               Resources
             </a>
             <a 
               href="#" 
               onClick={(e) => { e.preventDefault(); alert('Terminal Access Restricted. Developer Mode only.'); }}
-              className="text-sm font-mono text-white/40 hover:text-[#ec4899] transition-colors uppercase"
+              className="text-sm font-mono text-white/40 hover:text-[#22d3ee] smooth-transition uppercase accent-line"
             >
               Terminal
             </a>

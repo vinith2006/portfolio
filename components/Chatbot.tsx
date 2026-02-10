@@ -111,10 +111,10 @@ const Chatbot: React.FC = () => {
             {messages.map((msg, idx) => (
               <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                 <div className={`flex gap-3 max-w-[85%] ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}>
-                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${msg.role === 'user' ? 'bg-[#ec4899]/20' : 'bg-[#6366f1]/20'}`}>
-                    {msg.role === 'user' ? <User size={14} className="text-[#ec4899]" /> : <Bot size={14} className="text-[#6366f1]" />}
+                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${msg.role === 'user' ? 'bg-[#22d3ee]/20' : 'bg-[#6366f1]/20'}`}>
+                    {msg.role === 'user' ? <User size={14} className="text-[#22d3ee]" /> : <Bot size={14} className="text-[#6366f1]" />}
                   </div>
-                  <div className={`p-3 rounded-2xl text-sm leading-relaxed ${msg.role === 'user' ? 'bg-[#ec4899] text-white rounded-tr-none' : 'bg-white/5 border border-white/10 text-white/80 rounded-tl-none'}`}>
+                  <div className={`p-3 rounded-2xl text-sm leading-relaxed ${msg.role === 'user' ? 'bg-[#22d3ee] text-white rounded-tr-none' : 'bg-white/5 border border-white/10 text-white/80 rounded-tl-none'}`}>
                     {msg.text || (isLoading && idx === messages.length - 1 ? "..." : "")}
                   </div>
                 </div>
@@ -157,7 +157,7 @@ const Chatbot: React.FC = () => {
       {/* Toggle Button */}
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="w-16 h-16 rounded-full bg-gradient-to-tr from-[#6366f1] to-[#ec4899] flex items-center justify-center text-white shadow-[0_0_30px_rgba(99,102,241,0.5)] transition-all hover:scale-110 active:scale-95 group relative overflow-hidden"
+        className="w-16 h-16 rounded-full bg-gradient-to-tr from-[#6366f1] to-[#22d3ee] flex items-center justify-center text-white shadow-[0_0_30px_rgba(99,102,241,0.5)] transition-all hover:scale-110 active:scale-95 group relative overflow-hidden"
       >
         <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
         {isOpen ? <X size={28} /> : <MessageSquare size={28} />}
