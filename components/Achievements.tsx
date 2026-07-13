@@ -1,64 +1,95 @@
-
 import React from 'react';
-import { Award, ShieldCheck, Trophy, ExternalLink } from 'lucide-react';
-import { ACHIEVEMENTS, CERTIFICATIONS } from '../constants';
+import { Trophy, Calendar, Sparkles, ExternalLink } from 'lucide-react';
+import { ACHIEVEMENTS } from '../constants';
 
 const Achievements: React.FC = () => {
   return (
     <section id="achievements" className="py-24 px-6 relative overflow-hidden bg-gradient-to-b from-[#ef4444]/5 via-transparent to-[#ef4444]/5 perspective-container">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-20 fade-in-on-scroll">
-          <h2 className="text-4xl md:text-5xl font-black mb-4 tracking-tight uppercase title-enhanced title-fire text-3d-deep">🏆 ACCOMPLISHMENTS</h2>
+        <div className="text-center mb-16 fade-in-on-scroll">
+          <h2 className="text-4xl md:text-5xl font-black mb-4 tracking-tight uppercase title-enhanced title-fire text-3d-deep flex items-center justify-center gap-3">
+            🏆 Hackathons & Achievements
+          </h2>
           <div className="underline-gradient mx-auto" />
+          <p className="text-white/50 text-sm font-mono mt-4">
+            Competitive development sprints, engineering showcases, and awards.
+          </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Awards Column */}
-          <div className="space-y-8">
-            <h3 className="text-2xl font-bold flex items-center gap-3 mb-8 accent-line">
-              <Trophy className="text-[#f59e0b] group-hover:scale-110 smooth-transition" /> Major Awards
-            </h3>
-            {ACHIEVEMENTS.map((ach, idx) => (
-              <div key={idx} className="relative group card-enhanced card-fire lift-on-hover flip-on-hover shadow-3d overflow-hidden stagger-" style={{ animationDelay: `${idx * 100}ms` }}>
-                <div className="absolute top-4 right-8 text-[#f59e0b]/20 text-4xl font-black group-hover:text-[#f59e0b]/40 smooth-transition">#0{idx + 1}</div>
-                <div className="text-[#f59e0b] font-mono text-xs uppercase tracking-widest mb-2">{ach.date}</div>
-                <h4 className="text-xl font-bold mb-2 group-hover:text-[#f59e0b] smooth-transition">{ach.title}</h4>
-                <div className="text-sm font-bold text-white/40 mb-4">{ach.event}</div>
-                <p className="text-white/60 group-hover:text-white/70 leading-relaxed text-sm smooth-transition">{ach.description}</p>
-              </div>
-            ))}
-          </div>
+        <div className="grid md:grid-cols-2 gap-8">
+          {ACHIEVEMENTS.map((ach, idx) => {
+            const isFirst = ach.title.includes('🥇') || ach.title.toLowerCase().includes('first');
+            const isSecond = ach.title.includes('🥈') || ach.title.toLowerCase().includes('second');
+            const isThird = ach.title.includes('🥉') || ach.title.toLowerCase().includes('third');
+            
+            // Neon schemes based on medal placement
+            let colorScheme = 'card-fire'; // default
+            let medalColor = 'text-[#f59e0b]'; // gold
+            let borderGlow = 'hover:border-[#f59e0b]/40 hover:shadow-[0_0_25px_rgba(245,158,11,0.15)]';
+            
+            if (isFirst) {
+              colorScheme = 'card-fire bg-gradient-to-tr from-[#f59e0b]/10 to-transparent';
+              medalColor = 'text-[#f59e0b]';
+              borderGlow = 'hover:border-[#f59e0b]/55 hover:shadow-[0_0_25px_rgba(245,158,11,0.25)]';
+            } else if (isSecond) {
+              colorScheme = 'card-ocean bg-gradient-to-tr from-[#94a3b8]/10 to-transparent';
+              medalColor = 'text-[#cbd5e1]'; // silver
+              borderGlow = 'hover:border-[#cbd5e1]/55 hover:shadow-[0_0_25px_rgba(203,213,225,0.25)]';
+            } else if (isThird) {
+              colorScheme = 'card-aurora bg-gradient-to-tr from-[#b45309]/10 to-transparent';
+              medalColor = 'text-[#b45309]'; // bronze
+              borderGlow = 'hover:border-[#b45309]/55 hover:shadow-[0_0_25px_rgba(180,83,9,0.25)]';
+            }
 
-          {/* Certifications Column */}
-          <div className="space-y-6">
-            <h3 className="text-2xl font-bold flex items-center gap-3 mb-8 accent-line">
-              <ShieldCheck className="text-[#00f3ff] group-hover:scale-110 smooth-transition" /> Certifications
-            </h3>
-            <div className="grid gap-4">
-              {CERTIFICATIONS.map((cert, idx) => (
-                <div key={idx} className="flex items-center gap-4 glass-effect group hover:glow-border smooth-transition p-5 rounded-2xl lift-on-hover stagger-" style={{ animationDelay: `${idx * 50}ms` }}>
-                  <div className="w-12 h-12 rounded-xl glass-effect-2 group-hover:bg-[#00f3ff]/20 smooth-transition flex items-center justify-center shrink-0">
-                    <Award className="text-[#00f3ff] group-hover:scale-125 group-hover:text-[#f59e0b] smooth-transition" size={24} />
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="font-bold text-sm leading-tight mb-1 group-hover:text-[#00f3ff] smooth-transition">{cert.name}</h4>
-                    <div className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-tighter text-white/40">
-                      <span>{cert.issuer}</span>
-                      <span className="w-1 h-1 rounded-full bg-white/20" />
-                      <span>{cert.date}</span>
-                      {cert.score && (
-                        <>
-                          <span className="w-1 h-1 rounded-full bg-white/20" />
-                          <span className="text-[#00f3ff]">Score: {cert.score}</span>
-                        </>
-                      )}
+            return (
+              <div 
+                key={idx} 
+                className={`card-enhanced group lift-on-hover relative overflow-hidden p-8 rounded-3xl border border-white/10 flex flex-col justify-between smooth-transition ${colorScheme} ${borderGlow} stagger-`}
+                style={{ animationDelay: `${idx * 100}ms` }}
+              >
+                {/* Large watermark background text */}
+                <div className="absolute top-4 right-6 text-white/[0.02] text-8xl font-black select-none pointer-events-none group-hover:text-white/[0.05] transition-colors duration-500">
+                  #0{idx + 1}
+                </div>
+
+                <div>
+                  <div className="flex items-center justify-between gap-4 mb-4">
+                    <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-white/40">
+                      <Calendar size={12} className="text-white/30" /> {ach.date}
+                    </div>
+                    <div className={`text-2xl font-black ${medalColor} group-hover:scale-125 smooth-transition select-none`}>
+                      {isFirst && '🥇'}
+                      {isSecond && '🥈'}
+                      {isThird && '🥉'}
                     </div>
                   </div>
-                  <ExternalLink size={16} className="text-white/20 group-hover:text-[#00f3ff] smooth-transition cursor-pointer" />
+
+                  <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-[#00f3ff] smooth-transition mb-2 flex items-center gap-2">
+                    {ach.title}
+                  </h3>
+                  <div className="text-sm font-bold text-[#00f3ff] font-mono mb-4 flex items-center gap-1.5">
+                    <Sparkles size={14} /> {ach.event}
+                  </div>
+                  
+                  <p className="text-white/60 group-hover:text-white/70 leading-relaxed text-sm smooth-transition">
+                    {ach.description}
+                  </p>
                 </div>
-              ))}
-            </div>
-          </div>
+
+                <div className="mt-8 pt-6 border-t border-white/5 flex items-center justify-between text-xs font-mono text-white/40">
+                  <span>Competition verified</span>
+                  <a 
+                    href="https://github.com/vinith2006" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-lg bg-white/5 text-white/40 group-hover:text-[#00f3ff] group-hover:bg-[#00f3ff]/10 smooth-transition cursor-pointer"
+                  >
+                    <ExternalLink size={14} />
+                  </a>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

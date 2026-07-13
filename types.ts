@@ -6,6 +6,14 @@ export interface Project {
   tags: string[];
   image: string;
   link: string;
+  problemStatement?: string;
+  solution?: string;
+  features?: string[];
+  challenges?: string;
+  learningOutcomes?: string;
+  liveDemo?: string;
+  githubLink?: string;
+  screenshots?: string[];
 }
 
 export interface Skill {
@@ -19,6 +27,8 @@ export interface Experience {
   role: string;
   period: string;
   description: string[];
+  technologies?: string[];
+  achievements?: string[];
 }
 
 export interface Certification {
@@ -26,6 +36,7 @@ export interface Certification {
   issuer: string;
   date: string;
   score?: string;
+  icon?: string;
 }
 
 export interface Achievement {

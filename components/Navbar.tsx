@@ -13,11 +13,22 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems = ['Home', 'About', 'Skills', 'Projects', 'Achievements', 'Experience', 'Contact'];
+  const navItems = [
+    { label: 'Home', id: 'home' },
+    { label: 'About', id: 'about' },
+    { label: 'Skills', id: 'skills' },
+    { label: 'Projects', id: 'projects' },
+    { label: 'Research', id: 'publications' },
+    { label: 'Awards', id: 'achievements' },
+    { label: 'Certificates', id: 'certifications' },
+    { label: 'Experience', id: 'experience' },
+    { label: 'GitHub', id: 'github' },
+    { label: 'Contact', id: 'contact' }
+  ];
 
   const scrollToSection = (id: string) => {
     setIsOpen(false);
-    const element = document.getElementById(id.toLowerCase());
+    const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
@@ -35,35 +46,35 @@ const Navbar: React.FC = () => {
             <span className="text-xl font-black tracking-tighter gradient-text uppercase">VINITH M</span>
           </div>
 
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-5">
             {navItems.map((item) => (
               <button 
-                key={item} 
-                onClick={() => scrollToSection(item)}
-                className="text-sm font-medium text-white/70 hover:text-[#00f3ff] smooth-transition relative group"
+                key={item.id} 
+                onClick={() => scrollToSection(item.id)}
+                className="text-xs font-mono uppercase tracking-wider text-white/70 hover:text-[#00f3ff] smooth-transition relative group"
               >
-                {item}
+                {item.label}
                 <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-[#6366f1] to-[#22d3ee] smooth-transition group-hover:w-full" />
               </button>
             ))}
           </div>
 
-          <button className="md:hidden text-white p-2 smooth-transition hover:text-[#00f3ff]" onClick={() => setIsOpen(!isOpen)}>
+          <button className="lg:hidden text-white p-2 smooth-transition hover:text-[#00f3ff]" onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <X /> : <Menu />}
           </button>
           
           <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#00f3ff]/60 to-transparent scan-line" />
         </div>
 
-        <div className={`md:hidden mt-4 overflow-hidden smooth-transition ${isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
+        <div className={`lg:hidden mt-4 overflow-hidden smooth-transition ${isOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'}`}>
           <div className="glass-effect rounded-2xl p-6 flex flex-col gap-4">
             {navItems.map((item) => (
               <button 
-                key={item} 
-                className="text-lg text-left text-white/80 hover:text-[#00f3ff] smooth-transition accent-line"
-                onClick={() => scrollToSection(item)}
+                key={item.id} 
+                className="text-sm font-mono uppercase text-left text-white/80 hover:text-[#00f3ff] smooth-transition accent-line"
+                onClick={() => scrollToSection(item.id)}
               >
-                {item}
+                {item.label}
               </button>
             ))}
           </div>
