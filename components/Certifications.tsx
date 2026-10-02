@@ -12,8 +12,15 @@ const Certifications: React.FC = () => {
           </h2>
           <div className="underline-gradient mx-auto" />
           <p className="text-white/50 text-sm font-mono mt-4">
-            Professional credentials and academic accomplishments.
+            11 credentials across AI, cloud, data, and software engineering.
           </p>
+          <div className="flex flex-wrap justify-center gap-2 mt-6">
+            <span className="px-3 py-1.5 rounded-full border border-[#7c3aed]/40 bg-[#7c3aed]/10 text-[#c4b5fd] text-[10px] font-mono uppercase tracking-widest">Oracle · 3</span>
+            <span className="px-3 py-1.5 rounded-full border border-[#2563eb]/40 bg-[#2563eb]/10 text-[#93c5fd] text-[10px] font-mono uppercase tracking-widest">IBM SkillsBuild · 4</span>
+            <span className="px-3 py-1.5 rounded-full border border-[#ec4899]/40 bg-[#ec4899]/10 text-[#f9a8d4] text-[10px] font-mono uppercase tracking-widest">NPTEL Elite · 2</span>
+            <span className="px-3 py-1.5 rounded-full border border-[#22d3ee]/40 bg-[#22d3ee]/10 text-[#67e8f9] text-[10px] font-mono uppercase tracking-widest">Microsoft · 1</span>
+            <span className="px-3 py-1.5 rounded-full border border-[#f97316]/40 bg-[#f97316]/10 text-[#fdba74] text-[10px] font-mono uppercase tracking-widest">Board Infinity · 1</span>
+          </div>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
